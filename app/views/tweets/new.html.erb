@@ -1,0 +1,14 @@
+<% if @tweet.errors.present? %>
+<h3>エラーがあります。1文字以上140文字以下で入力してください。</h3>
+<ul>
+　<% @tweet.errors.full_messages.each do |msg| %>
+　　<li><%= msg %></li>
+　<% end %>
+</ul>
+<% end %>
+
+<%= form_for @tweet , url: {action: :create} do |f| %>
+ <%= f.label :message, 'いまどうしてる?' %>
+ <%= f.text_field :message %>
+ <%= f.submit '登録' %>
+<% end %>

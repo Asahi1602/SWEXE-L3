@@ -1,0 +1,22 @@
+<% if flash[:notice] %>
+　<%= flash[:notice] %>
+<% end %>
+
+<table>
+<% @tweets.each do |tweet| %>
+<tr>
+ <td>
+  <%= tweet.message %>
+ </td>
+ <td>
+  <%= ((Time.zone.now - tweet.tdate) / 60).round %>分前
+ </td>
+ <td>
+  <%= link_to '削除', "/tweets/#{tweet.id}", method: :delete %>
+  <%= link_to '表示', "/tweets/#{tweet.id}" %>
+  <%= link_to '編集', "/tweets/#{tweet.id}/edit" %>
+ </td>
+</tr>
+<% end %>
+</table>
+<p><%= link_to 'つぶやく', '/tweets/new' %></p>
